@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+  {{ post.titulo }} | {{ block.super }}
+{% endblock title %}
+{% block body %}
+	<div class="row">
+			<div class="col s12 m8">
+					<h4>{{ post.titulo }}</h4>
+          <span>Autor: {{ post.autor }} | Data do post: {{ post.data_post }}</span>
+					<p>
+						{{ post.conteudo|safe }}
+					</p>
+          <div class="fb-comments" data-href="http://localhost:8000/posts/ler-post/{{ post.slug }}" data-numposts="5"></div>
+			</div>
+      {% include "core/sidebar.html" %}
+  </div>
+{% endblock %}

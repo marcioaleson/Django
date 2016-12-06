@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<div class="row">
+			<div class="col s12 m8">
+				{% for p in posts %}
+					<h4>{{ p.titulo }}</h4>
+					<span>Autor: {{ p.autor }} | Data do post: {{ p.data_post }} | Postado em: {{ p.categoria }}</span>
+					<p>
+						{{ p.conteudo|safe|truncatewords:40 }}
+						<span><a href="{% url 'posts:ler-post' p.slug %}">Continue lendo</a></span>
+					</p>
+				{% endfor %}
+			</div>
+			{% include "core/sidebar.html" %}
+		</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Lista de posts | {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+	<div class="row">
+			<div class="col s12 m8">
+				{% for pc in posts_categoria %}
+					<h4>{{ pc.titulo }}</h4>
+					<span>Autor: {{ pc.autor }} | Data do post: {{ pc.data_post }} | Postado em: {{ pc.categoria }}</span>
+					<p>
+						{{ pc.conteudo|safe|truncatewords:40 }}
+						<span><a href="{% url 'posts:ler-post' pc.slug %}">Continue lendo</a></span>
+					</p>
+        {% empty %}
+        <p>
+          Nenhum post nessa categoria.
+        </p>
+				{% endfor %}
+			</div>
+			{% include "core/sidebar.html" %}
+		</div>
+{% endblock %}
